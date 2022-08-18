@@ -1,29 +1,22 @@
-Sports - Solution Code
-==================================
+Unscramble app
+=================================
 
-Solution code for Android Basics in Kotlin.
-Codelab: Adaptive Layouts.
+Single player game app that displays scrambled words. To play the game, player has to make a
+word using all the letters in the displayed scrambled word.
+This code demonstrates the Android Architecture component- ViewModel and StateFlow.
 
-Introduction
-------------
-
-Sports app is a basic app to introduce beginner students to adaptive layouts. This app consists of
-two fragments: a sports topics list and a details screen. The details screen displays placeholder
- text for the sports news.
-This app demonstrated
-the use of [SlidingPaneLayout](https://developer.android.com/reference/androidx/slidingpanelayout/widget/SlidingPaneLayout?hl=PL).
 
 Pre-requisites
 --------------
+* Experience with Kotlin syntax.
+* How to create and run a project in Android Studio.
+* How to create composable functions 
 
-You need to know:
-- How to download code into Android Studio and run it.
-- How to create and use fragments.
-- RecyclerView and adapters
-- Familiar with the Android architecture components ViewModel, and LiveData.
-- Basic knowledge of Navigation components.
 
 Getting Started
 ---------------
+1. Install Android Studio, if you don't already have it.
+2. Download the sample.
+3. Import the sample into Android Studio.
+4. Build and run the sample.
 
-1. Download and run the app.

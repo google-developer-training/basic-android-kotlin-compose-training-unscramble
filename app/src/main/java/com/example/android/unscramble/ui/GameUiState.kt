@@ -13,20 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.example.android.unscramble.ui
 
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
-}
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-rootProject.name = "Unscramble"
-include ':app'
+/**
+ * Data class that represents the game UI state
+ */
+data class GameUiState(
+    val currentScrambledWord: String = "",
+    val currentWordCount: Int = 0,
+    val score: Int = 0,
+    val isGuessedWordWrong: Boolean = false,
+    val isGameOver: Boolean = false
+)

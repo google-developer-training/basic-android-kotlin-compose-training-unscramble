@@ -15,8 +15,8 @@
   -->
 
 <resources>
-
     <style name="Theme.Unscramble" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 </resources>
