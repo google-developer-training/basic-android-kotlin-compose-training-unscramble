@@ -70,6 +70,4 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-
-    testImplementation 'junit:junit:4.13.2'
 }
