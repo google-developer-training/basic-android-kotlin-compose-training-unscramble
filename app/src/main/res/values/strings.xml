@@ -1,0 +1,55 @@
+<!--
+  ~ Copyright (c) 2021 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">Sports</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="list_fragment_label">Sports</string>
+    <string name="news_fragment_label">Sports News</string>
+
+    <string name="title_placeholder">Title</string>
+    <string name="news_title">News</string>
+    <string name="sports_info_placeholder">Here is some news</string>
+    <string name="sports_news_detail_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Praesent ultrices congue rutrum. Phasellus elementum ipsum ac convallis aliquam. Suspendisse
+        eleifend eros a enim faucibus mollis. Nunc placerat, est vitae vestibulum blandit, dolor
+        diam fringilla tellus, eu euismod mauris neque at neque.</string>
+    />
+
+    <string name="baseball">Baseball</string>
+    <string name="badminton">Badminton</string>
+    <string name="basketball">Basketball</string>
+    <string name="bowling">Bowling</string>
+    <string name="cycling">Cycling</string>
+    <string name="golf">Golf</string>
+    <string name="running">Running</string>
+    <string name="soccer">Soccer</string>
+    <string name="swimming">Swimming</string>
+    <string name="table_tennis">Table Tennis</string>
+    <string name="tennis">Tennis</string>
+
+    <string name="baseball_subtitle">Here is some Baseball news!</string>
+    <string name="badminton_subtitle">Here is some Badminton news!</string>
+    <string name="basketball_subtitle">Here is some Basketball news!</string>
+    <string name="bowling_subtitle">Here is some Bowling news!</string>
+    <string name="cycling_subtitle">Here is some Cycling news!</string>
+    <string name="golf_subtitle">Here is some Golf news!</string>
+    <string name="running_subtitle">Here is some Running news!</string>
+    <string name="soccer_subtitle">Here is some Soccer news!</string>
+    <string name="swimming_subtitle">Here is some Swimming news!</string>
+    <string name="table_tennis_subtitle">Here is some Table Tennis news!</string>
+    <string name="tennis_subtitle">Here is some Tennis news!</string>
+</resources>
