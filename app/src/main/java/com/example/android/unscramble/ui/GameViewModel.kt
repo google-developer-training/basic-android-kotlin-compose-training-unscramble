@@ -102,6 +102,7 @@ class GameViewModel : ViewModel() {
             _uiState.update { currentState ->
                 currentState.copy(
                     isGuessedWordWrong = false,
+                    currentWordCount = currentState.currentWordCount.inc(),
                     score = updatedScore,
                     isGameOver = true
                 )
