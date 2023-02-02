@@ -94,7 +94,7 @@ fun GameStatus(modifier: Modifier = Modifier) {
             .size(48.dp),
     ) {
         Text(
-            text = stringResource(R.string.word_count, 0),
+            text = stringResource(R.string.word_count, 1),
             fontSize = 18.sp,
         )
         Text(
