@@ -1,11 +1,11 @@
 /*
- * Copyright (c)2023 The Android Open Source Project
+ * Copyright (C) 2023 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *      https://www.apache.org/licenses/LICENSE-2.0
+ *     https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,9 +20,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import com.example.android.unscramble.data.MAX_NO_OF_WORDS
-import com.example.android.unscramble.data.SCORE_INCREASE
-import com.example.android.unscramble.data.allWords
+import com.example.unscramble.data.MAX_NO_OF_WORDS
+import com.example.unscramble.data.SCORE_INCREASE
+import com.example.unscramble.data.allWords
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -123,7 +123,7 @@ class GameViewModel : ViewModel() {
         val tempWord = word.toCharArray()
         // Scramble the word
         tempWord.shuffle()
-        while (String(tempWord).equals(word)) {
+        while (String(tempWord) == word) {
             tempWord.shuffle()
         }
         return String(tempWord)
@@ -132,11 +132,11 @@ class GameViewModel : ViewModel() {
     private fun pickRandomWordAndShuffle(): String {
         // Continue picking up a new random word until you get one that hasn't been used before
         currentWord = allWords.random()
-        if (usedWords.contains(currentWord)) {
-            return pickRandomWordAndShuffle()
+        return if (usedWords.contains(currentWord)) {
+            pickRandomWordAndShuffle()
         } else {
             usedWords.add(currentWord)
-            return shuffleCurrentWord(currentWord)
+            shuffleCurrentWord(currentWord)
         }
     }
 }

@@ -31,7 +31,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-
 private val LightColors = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
@@ -101,6 +100,7 @@ private val DarkColors = darkColorScheme(
 fun UnscrambleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
+    // Dynamic color in this app is turned off for learning purposes
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
@@ -128,24 +128,7 @@ fun UnscrambleTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
+        content = content,
+        shapes = Shapes
     )
 }
-
-
-//@Composable
-//fun UnscrambleTheme(
-//  useDarkTheme: Boolean = isSystemInDarkTheme(),
-//  content: @Composable() () -> Unit
-//) {
-//  val colors = if (!useDarkTheme) {
-//    LightColors
-//  } else {
-//    DarkColors
-//  }
-//
-//  MaterialTheme(
-//    colorScheme = colors,
-//    content = content
-//  )
-//}

@@ -15,6 +15,7 @@
  */
 
 package com.example.unscramble.ui.theme
+
 import androidx.compose.ui.graphics.Color
 
 val md_theme_light_primary = Color(0xFF4355B9)
@@ -43,7 +44,6 @@ val md_theme_light_outline = Color(0xFF767680)
 val md_theme_light_inverseOnSurface = Color(0xFFF3F0F4)
 val md_theme_light_inverseSurface = Color(0xFF303034)
 val md_theme_light_inversePrimary = Color(0xFFBAC3FF)
-val md_theme_light_shadow = Color(0xFF000000)
 val md_theme_light_surfaceTint = Color(0xFF4355B9)
 val md_theme_light_outlineVariant = Color(0xFFC7C5D0)
 val md_theme_light_scrim = Color(0xFF000000)
@@ -74,10 +74,6 @@ val md_theme_dark_outline = Color(0xFF90909A)
 val md_theme_dark_inverseOnSurface = Color(0xFF1B1B1F)
 val md_theme_dark_inverseSurface = Color(0xFFE4E1E6)
 val md_theme_dark_inversePrimary = Color(0xFF4355B9)
-val md_theme_dark_shadow = Color(0xFF000000)
 val md_theme_dark_surfaceTint = Color(0xFFBAC3FF)
 val md_theme_dark_outlineVariant = Color(0xFF46464F)
 val md_theme_dark_scrim = Color(0xFF000000)
-
-
-val seed = Color(0xFF3F51B5)
