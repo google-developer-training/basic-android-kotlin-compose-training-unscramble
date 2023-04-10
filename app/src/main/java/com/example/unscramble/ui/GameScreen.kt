@@ -16,51 +16,45 @@
 package com.example.unscramble.ui
 
 import android.app.Activity
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme.colorScheme
+import androidx.compose.material3.MaterialTheme.shapes
+import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.unscramble.R
 import com.example.unscramble.ui.theme.UnscrambleTheme
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.MaterialTheme.colorScheme
-import androidx.compose.material3.MaterialTheme.shapes
-import androidx.compose.material3.MaterialTheme.typography
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 
 @Composable
 fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
@@ -101,9 +95,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
         ) {
 
             Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(mediumPadding),
+                modifier = Modifier.fillMaxWidth(),
                 onClick = { gameViewModel.checkUserGuess() }
             ) {
                 Text(
@@ -123,7 +115,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             }
         }
 
-        GameStatus(score = gameUiState.score)
+        GameStatus(score = gameUiState.score, modifier = Modifier.padding(20.dp))
 
         if (gameUiState.isGameOver) {
             FinalScoreDialog(
@@ -137,13 +129,12 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
 @Composable
 fun GameStatus(score: Int, modifier: Modifier = Modifier) {
     Card(
-        modifier = modifier.padding(20.dp)
+        modifier = modifier
     ) {
         Text(
             text = stringResource(R.string.score, score),
-            fontSize = 28.sp,
-            modifier = modifier.padding(8.dp),
-            fontWeight = FontWeight.Bold
+            style = typography.headlineMedium,
+            modifier = Modifier.padding(8.dp)
         )
 
     }
@@ -177,17 +168,17 @@ fun GameLayout(
                     .padding(horizontal = 10.dp, vertical = 4.dp)
                     .align(alignment = Alignment.End),
                 text = stringResource(R.string.word_count, wordCount),
-                fontSize = 18.sp,
+                style = typography.titleMedium,
                 color = colorScheme.onPrimary
             )
             Text(
                 text = currentScrambledWord,
-                fontSize = 45.sp,
+                style = typography.displayMedium
             )
             Text(
                 text = stringResource(R.string.instructions),
                 textAlign = TextAlign.Center,
-                fontSize = 17.sp,
+                style = typography.titleMedium
             )
             OutlinedTextField(
                 value = userGuess,
