@@ -16,6 +16,5 @@
   -->
 
 <resources>
-
     <style name="Theme.Unscramble" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
