@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
@@ -63,6 +64,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
 
     Column(
         modifier = Modifier
+            .safeContentPadding()
             .verticalScroll(rememberScrollState())
             .padding(mediumPadding),
         verticalArrangement = Arrangement.Center,
