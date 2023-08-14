@@ -64,7 +64,6 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
 
     Column(
         modifier = Modifier
-            .safeContentPadding()
             .verticalScroll(rememberScrollState())
             .padding(mediumPadding),
         verticalArrangement = Arrangement.Center,
@@ -75,7 +74,6 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             text = stringResource(R.string.app_name),
             style = typography.titleLarge,
         )
-
         GameLayout(
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
             wordCount = gameUiState.currentWordCount,
