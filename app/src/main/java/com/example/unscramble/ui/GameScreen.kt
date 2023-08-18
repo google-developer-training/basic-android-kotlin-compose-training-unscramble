@@ -64,8 +64,9 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
 
     Column(
         modifier = Modifier
-            .verticalScroll(rememberScrollState())
-            .padding(mediumPadding),
+            .safeContentPadding()
+            .padding(horizontal = mediumPadding)
+            .verticalScroll(rememberScrollState()),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
