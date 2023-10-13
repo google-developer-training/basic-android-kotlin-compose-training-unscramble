@@ -68,7 +68,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             .statusBarsPadding()
             .verticalScroll(rememberScrollState())
             .safeDrawingPadding()
-            .padding(horizontal = mediumPadding),
+            .padding(mediumPadding),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
