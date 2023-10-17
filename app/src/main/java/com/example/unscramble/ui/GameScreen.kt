@@ -185,7 +185,11 @@ fun GameLayout(
                 singleLine = true,
                 shape = shapes.large,
                 modifier = Modifier.fillMaxWidth(),
-                colors = TextFieldDefaults.textFieldColors(containerColor = colorScheme.surface),
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = colorScheme.surface,
+                    unfocusedContainerColor = colorScheme.surface,
+                    disabledContainerColor = colorScheme.surface,
+                ),
                 onValueChange = onUserGuessChanged,
                 label = {
                     if (isGuessWrong) {
