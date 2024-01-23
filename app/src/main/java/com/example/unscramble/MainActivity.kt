@@ -17,6 +17,7 @@
 package com.example.unscramble
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,11 +25,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.example.unscramble.ui.GameScreen
+import com.example.unscramble.ui.GameViewModel
 import com.example.unscramble.ui.theme.UnscrambleTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        println("Create function is called ")
+        GameViewModel()
         setContent {
             UnscrambleTheme {
                 // A surface container using the 'background' color from the theme
@@ -41,4 +45,31 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
+    override fun onPause() {
+        println("Pause function is called ")
+        super.onPause()
+    }override fun onResume() {
+        println("Resume function is called ")
+        super.onResume()
+    }
+    override fun onStart() {
+        println("Start function is called ")
+        super.onStart()
+    }
+
+    override fun on
+
+    override fun onStop() {
+        super.onStop()
+        println("Stop function is called ")
+    }
+
+    override fun onDestroy(){
+        println("Destroy function is called ")
+        super.onDestroy()
+
+    }
+
+
 }

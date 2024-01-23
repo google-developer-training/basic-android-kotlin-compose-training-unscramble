@@ -30,5 +30,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Unscramble"
+rootProject.name = "UnScramble"
 include(":app")

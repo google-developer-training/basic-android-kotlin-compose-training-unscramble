@@ -114,11 +114,11 @@ fun GameStatus(score: Int, modifier: Modifier = Modifier) {
     Card(
         modifier = modifier
     ) {
-        Text(
-            text = stringResource(R.string.score, score),
-            style = typography.headlineMedium,
-            modifier = Modifier.padding(8.dp)
-        )
+//        Text(
+//            text = stringResource(R.string.score, score),
+//            style = typography.headlineMedium,
+//            modifier = Modifier.padding(8.dp)
+//        )
     }
 }
 
@@ -144,6 +144,7 @@ fun GameLayout(modifier: Modifier = Modifier) {
                 text = stringResource(R.string.word_count, 0),
                 style = typography.titleMedium,
                 color = colorScheme.onPrimary
+
             )
             Text(
                 text = "scrambleun",
