@@ -118,12 +118,13 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
         }
 
         GameStatus(gameUiState.score, modifier = Modifier.padding(20.dp))
+        if(gameUiState.score==60)FinalScoreDialog(score = 60, onPlayAgain = { gameViewModel.resetGame()})
     }
 }
 
 @Composable
 fun GameStatus(score: Int, modifier: Modifier = Modifier) {
-    if(score==60)FinalScoreDialog(score = 60, onPlayAgain = { })
+
     Card(
         modifier = modifier
     ) {
