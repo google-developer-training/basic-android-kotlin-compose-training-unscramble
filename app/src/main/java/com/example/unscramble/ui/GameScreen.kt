@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
@@ -75,10 +74,13 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             style = typography.titleLarge,
         )
 
-        GameLayout( currentScrambledWord = gameUiState.currentScrambleWord,
+        GameLayout( currentScrambledWord = gameUiState.currentScrambledWord,
+            isGuessWrong= gameUiState.isGuessedWordWrong,
             userGuess = gameViewModel.userGuess,
-            onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
-            onKeyboardDone = { }
+            currentWordCount = gameUiState.currentWordCount,
+            onUserGuessChanged = { temp ->
+                gameViewModel.updateUserGuess(temp) },
+            onKeyboardDone = { gameViewModel.checkUserGuess() }
         )
         Column(
             modifier = Modifier
@@ -91,13 +93,12 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             Button(
                 modifier = Modifier.fillMaxWidth(),
                 onClick = {
-                    gameViewModel.resetGame()
-//                    gameViewModel._uiState.value= GameUiState("asasa")
-//                    gameUiState.currentScrambleWord="asa"
+                    gameViewModel.checkUserGuess()
 
-                    Log.d("ballu", gameViewModel.ui().value.currentScrambleWord)
+
                 }
             ) {
+                Log.d("qwhfqewhcewhqbchqbwecbhwe", gameUiState.currentScrambledWord)
                 Text(
                     text = stringResource(R.string.submit),
                     fontSize = 16.sp
@@ -115,7 +116,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             }
         }
 
-        GameStatus(score = 0, modifier = Modifier.padding(20.dp))
+        GameStatus(gameUiState.score, modifier = Modifier.padding(20.dp))
     }
 }
 
@@ -134,7 +135,10 @@ fun GameStatus(score: Int, modifier: Modifier = Modifier) {
 
 @Composable
 fun GameLayout(      currentScrambledWord: String,
+                     isGuessWrong: Boolean,
                      userGuess: String,
+                     currentWordCount: Int,
+
                      onUserGuessChanged: (String) -> Unit,
                      onKeyboardDone: () -> Unit,
                      modifier: Modifier = Modifier) {
@@ -155,7 +159,7 @@ fun GameLayout(      currentScrambledWord: String,
                     .background(colorScheme.surfaceTint)
                     .padding(horizontal = 10.dp, vertical = 4.dp)
                     .align(alignment = Alignment.End),
-                text = stringResource(R.string.word_count, 0),
+                text = stringResource(R.string.word_count, currentWordCount),
                 style = typography.titleMedium,
                 color = colorScheme.onPrimary
 
@@ -179,15 +183,22 @@ fun GameLayout(      currentScrambledWord: String,
                     unfocusedContainerColor = colorScheme.surface,
                     disabledContainerColor = colorScheme.surface,
                 ),
-                onValueChange = {},
-
-                label = { Text(stringResource(R.string.enter_your_word)) },
-                isError = false,
+                onValueChange = onUserGuessChanged,
+                label = {
+                    Text(stringResource(
+                        if(!isGuessWrong)
+                        R.string.enter_your_word
+                        else R.string.wrong_guess
+                    )) },
+                isError = isGuessWrong,
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),
                 keyboardActions = KeyboardActions(
-                    onDone = { onKeyboardDone()}
+                    onDone = {
+                        Log.d("qwer", "ansh is a very ")
+                        onKeyboardDone()
+                    }
                 )
             )
         }

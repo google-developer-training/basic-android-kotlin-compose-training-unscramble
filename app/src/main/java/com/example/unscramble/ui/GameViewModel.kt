@@ -8,13 +8,16 @@ import com.example.unscramble.data.allWords
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 
-class GameViewModel: ViewModel()  {
+class GameViewModel: ViewModel(){
     private lateinit var currentWord: String
     var userGuess by mutableStateOf("")
         private set
-     val _uiState = MutableStateFlow(GameUiState()) // tell the updates
+    private val _uiState = MutableStateFlow(GameUiState())
+
+    // tell the updates
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
     private var _count :Int= 0
     val count: Int get() =_count
@@ -24,11 +27,11 @@ class GameViewModel: ViewModel()  {
     private fun pickRandomWordAndShuffle(): String {
         // Continue picking up a new random word until you get one that hasn't been used before
         currentWord = allWords.random()
-        if (usedWords.contains(currentWord)) {
-            return pickRandomWordAndShuffle()
+        return if (usedWords.contains(currentWord)) {
+            pickRandomWordAndShuffle()
         } else {
             usedWords.add(currentWord)
-            return shuffleCurrentWord(currentWord)
+            shuffleCurrentWord(currentWord)
         }
     }
     fun updateUserGuess(guessedWord: String){
@@ -43,9 +46,25 @@ class GameViewModel: ViewModel()  {
         }
         return String(tempWord)
     }
+    fun checkUserGuess(){
+        if (userGuess.equals(currentWord, ignoreCase = true)) {
+            userGuess="";
+            _uiState.update { currentState ->
+                currentState.copy(pickRandomWordAndShuffle(), isGuessedWordWrong = false, score= currentState.score+20 , currentWordCount = currentState.currentWordCount.inc() )
+            }
+            if(_uiState.value.currentWordCount==11) {
+                resetGame()
+            }
+        } else {
+            userGuess=""
+            _uiState.update { currentState ->
+                currentState.copy(isGuessedWordWrong = true)
+            }
+        }
+    }
     fun resetGame() {
         usedWords.clear()
-        _uiState.value = GameUiState(pickRandomWordAndShuffle())
+        _uiState.value = GameUiState(pickRandomWordAndShuffle(), isGuessedWordWrong = false, score = 0, currentWordCount = 1)
     }
     fun ui(): MutableStateFlow<GameUiState> {
         return _uiState
@@ -53,4 +72,5 @@ class GameViewModel: ViewModel()  {
     init {
         resetGame()
     }
+
 }
