@@ -32,7 +32,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         println("Create function is called ")
-        GameViewModel()
+//        GameViewModel()
         setContent {
             UnscrambleTheme {
                 // A surface container using the 'background' color from the theme
@@ -40,6 +40,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+
                     GameScreen()
                 }
             }
@@ -58,7 +59,7 @@ class MainActivity : ComponentActivity() {
         super.onStart()
     }
 
-    override fun on
+
 
     override fun onStop() {
         super.onStop()
