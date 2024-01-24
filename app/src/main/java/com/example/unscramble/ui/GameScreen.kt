@@ -59,6 +59,7 @@ import com.example.unscramble.ui.theme.UnscrambleTheme
 
 @Composable
 fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
+
     val gameUiState by gameViewModel.uiState.collectAsState()
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
     Column(
@@ -122,6 +123,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
 
 @Composable
 fun GameStatus(score: Int, modifier: Modifier = Modifier) {
+    if(score==60)FinalScoreDialog(score = 60, onPlayAgain = { })
     Card(
         modifier = modifier
     ) {
@@ -138,7 +140,6 @@ fun GameLayout(      currentScrambledWord: String,
                      isGuessWrong: Boolean,
                      userGuess: String,
                      currentWordCount: Int,
-
                      onUserGuessChanged: (String) -> Unit,
                      onKeyboardDone: () -> Unit,
                      modifier: Modifier = Modifier) {
@@ -201,7 +202,9 @@ fun GameLayout(      currentScrambledWord: String,
                     }
                 )
             )
+
         }
+
     }
 }
 

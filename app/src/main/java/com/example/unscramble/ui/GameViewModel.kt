@@ -48,14 +48,16 @@ class GameViewModel: ViewModel(){
     }
     fun checkUserGuess(){
         if (userGuess.equals(currentWord, ignoreCase = true)) {
+
             userGuess="";
+            var check: Int=_uiState.value.currentWordCount
+            if(_uiState.value.currentWordCount!=3)check++
             _uiState.update { currentState ->
-                currentState.copy(pickRandomWordAndShuffle(), isGuessedWordWrong = false, score= currentState.score+20 , currentWordCount = currentState.currentWordCount.inc() )
+                currentState.copy(pickRandomWordAndShuffle(), isGuessedWordWrong = false, score= currentState.score+20 , currentWordCount = check )
             }
-            if(_uiState.value.currentWordCount==11) {
-                resetGame()
-            }
+
         } else {
+            Log.d("checking", currentWord)
             userGuess=""
             _uiState.update { currentState ->
                 currentState.copy(isGuessedWordWrong = true)
