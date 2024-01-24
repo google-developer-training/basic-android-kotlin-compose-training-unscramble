@@ -68,9 +68,7 @@ class GameViewModel: ViewModel(){
         usedWords.clear()
         _uiState.value = GameUiState(pickRandomWordAndShuffle(), isGuessedWordWrong = false, score = 0, currentWordCount = 1)
     }
-    fun ui(): MutableStateFlow<GameUiState> {
-        return _uiState
-    }
+
     init {
         resetGame()
     }
