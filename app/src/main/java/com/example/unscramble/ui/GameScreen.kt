@@ -21,6 +21,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawingPadding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
@@ -63,7 +65,9 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
 
     Column(
         modifier = Modifier
+            .statusBarsPadding()
             .verticalScroll(rememberScrollState())
+            .safeDrawingPadding()
             .padding(mediumPadding),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
@@ -73,7 +77,6 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             text = stringResource(R.string.app_name),
             style = typography.titleLarge,
         )
-
         GameLayout(
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
             wordCount = gameUiState.currentWordCount,
