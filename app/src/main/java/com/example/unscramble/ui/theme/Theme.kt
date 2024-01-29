@@ -95,7 +95,6 @@ private val DarkColors = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
-
 @Composable
 fun UnscrambleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
