@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.util.TreeSet
 
 /**
  * ViewModel containing the app data and methods to process the data
@@ -41,7 +42,7 @@ class GameViewModel : ViewModel() {
         private set
 
     // Set of words used in the game
-    private var usedWords: MutableSet<String> = mutableSetOf()
+    private var usedWords: MutableSet<String> = TreeSet()
     private lateinit var currentWord: String
 
     init {
