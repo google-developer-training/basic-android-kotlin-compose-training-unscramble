@@ -60,7 +60,7 @@ class GameViewModel : ViewModel() {
      * Update the user's guess
      */
     fun updateUserGuess(guessedWord: String){
-        userGuess = guessedWord
+        userGuess = guessedWord.trim()
     }
 
     /*
