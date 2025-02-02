@@ -41,19 +41,20 @@ class GameViewModel : ViewModel() {
         private set
 
     // Set of words used in the game
-    private var usedWords: MutableSet<String> = mutableSetOf()
     private lateinit var currentWord: String
+    private lateinit var gameUiState: GameUiState
 
     init {
-        resetGame()
+        gameUiState = GameUiState()
+        resetGame(gameUiState)
     }
 
     /*
      * Re-initializes the game data to restart the game.
      */
-    fun resetGame() {
-        usedWords.clear()
-        _uiState.value = GameUiState(currentScrambledWord = pickRandomWordAndShuffle())
+    fun resetGame(gameUiState: GameUiState) {
+        gameUiState.usedWords.clear()
+        _uiState.value = GameUiState(currentScrambledWord = pickRandomWordAndShuffle(gameUiState))
     }
 
     /*
@@ -72,7 +73,7 @@ class GameViewModel : ViewModel() {
             // User's guess is correct, increase the score
             // and call updateGameState() to prepare the game for next round
             val updatedScore = _uiState.value.score.plus(SCORE_INCREASE)
-            updateGameState(updatedScore)
+            updateGameState(gameUiState,updatedScore)
         } else {
             // User's guess is wrong, show an error
             _uiState.update { currentState ->
@@ -87,7 +88,7 @@ class GameViewModel : ViewModel() {
      * Skip to next word
      */
     fun skipWord() {
-        updateGameState(_uiState.value.score)
+        updateGameState(gameUiState,_uiState.value.score)
         // Reset user guess
         updateUserGuess("")
     }
@@ -96,8 +97,8 @@ class GameViewModel : ViewModel() {
      * Picks a new currentWord and currentScrambledWord and updates UiState according to
      * current game state.
      */
-    private fun updateGameState(updatedScore: Int) {
-        if (usedWords.size == MAX_NO_OF_WORDS){
+    private fun updateGameState(gameUiState: GameUiState,updatedScore: Int) {
+        if (gameUiState.usedWords.size == MAX_NO_OF_WORDS){
             //Last round in the game, update isGameOver to true, don't pick a new word
             _uiState.update { currentState ->
                 currentState.copy(
@@ -111,7 +112,7 @@ class GameViewModel : ViewModel() {
             _uiState.update { currentState ->
                 currentState.copy(
                     isGuessedWordWrong = false,
-                    currentScrambledWord = pickRandomWordAndShuffle(),
+                    currentScrambledWord = pickRandomWordAndShuffle(gameUiState),
                     currentWordCount = currentState.currentWordCount.inc(),
                     score = updatedScore
                 )
@@ -129,13 +130,13 @@ class GameViewModel : ViewModel() {
         return String(tempWord)
     }
 
-    private fun pickRandomWordAndShuffle(): String {
+    private fun pickRandomWordAndShuffle(gameUiState: GameUiState): String {
         // Continue picking up a new random word until you get one that hasn't been used before
         currentWord = allWords.random()
-        return if (usedWords.contains(currentWord)) {
-            pickRandomWordAndShuffle()
+        return if (gameUiState.usedWords.contains(currentWord)) {
+            pickRandomWordAndShuffle(gameUiState)
         } else {
-            usedWords.add(currentWord)
+            gameUiState.usedWords.add(currentWord)
             shuffleCurrentWord(currentWord)
         }
     }

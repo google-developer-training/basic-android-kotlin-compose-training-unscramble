@@ -123,7 +123,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
         if (gameUiState.isGameOver) {
             FinalScoreDialog(
                 score = gameUiState.score,
-                onPlayAgain = { gameViewModel.resetGame() }
+                onPlayAgain = { gameViewModel.resetGame(gameUiState) }
             )
         }
     }
