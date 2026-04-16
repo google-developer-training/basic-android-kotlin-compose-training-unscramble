@@ -57,6 +57,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.unscramble.R
 import com.example.unscramble.ui.theme.UnscrambleTheme
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.TextField
 
 @Composable
 fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
@@ -117,7 +124,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
                 )
             }
         }
-
+        TambahKataUI(gameViewModel)
         GameStatus(score = gameUiState.score, modifier = Modifier.padding(20.dp))
 
         if (gameUiState.isGameOver) {
@@ -248,6 +255,36 @@ private fun FinalScoreDialog(
             }
         }
     )
+}
+
+@Composable
+fun TambahKataUI(viewModel: GameViewModel) {
+
+    var input by remember { mutableStateOf("") }
+
+    Column(modifier = Modifier.padding(16.dp)) {
+
+        Text("Tambah Kata Baru")
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        TextField(
+            value = input,
+            onValueChange = { input = it },
+            label = { Text("Masukkan kata") }
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(onClick = {
+            if (input.isNotEmpty()) {
+                viewModel.tambahKata(input)
+                input = ""
+            }
+        }) {
+            Text("Simpan")
+        }
+    }
 }
 
 @Preview(showBackground = true)

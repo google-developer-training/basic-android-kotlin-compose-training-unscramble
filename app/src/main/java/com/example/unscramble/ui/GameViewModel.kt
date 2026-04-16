@@ -27,12 +27,20 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
+import com.example.unscramble.data.AppDatabase
+import com.example.unscramble.data.Word
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * ViewModel containing the app data and methods to process the data
  */
-class GameViewModel : ViewModel() {
+class GameViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val db = AppDatabase.getInstance(application)
     // Game UI state
     private val _uiState = MutableStateFlow(GameUiState())
     val uiState: StateFlow<GameUiState> = _uiState.asStateFlow()
@@ -46,6 +54,16 @@ class GameViewModel : ViewModel() {
 
     init {
         resetGame()
+    }
+
+    fun tambahKata(kataBaru: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            db.wordDao().insert(Word(text = kataBaru))
+        }
+    }
+
+    suspend fun ambilSemuaKata(): List<String> {
+        return db.wordDao().getAll().map { it.text }
     }
 
     /*
